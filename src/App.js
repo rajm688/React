@@ -1,5 +1,8 @@
 import "./App.css";
-
+import * as React from 'react';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import { margin, padding } from "@mui/system";
 export default function App() {
   const details = [
     {
@@ -96,7 +99,9 @@ export default function App() {
   // <Welcome name={name} img={poster}/>
 }
 function Welcome({ name, img, details, rating }) {
-  const styles = {color: (rating > 5 ? "red":"green")}
+//conditional styling
+  const styles = {color: rating > 8 ? "green":"red"}
+  const width = {width:"90%" ,margin:"10px"}
     return (
       <div className="main">
         <img className="image" src={img} alt="img" />
@@ -104,7 +109,10 @@ function Welcome({ name, img, details, rating }) {
         <h1>{name}</h1>
         <p style={styles}>❤️{rating}</p>
         </div>
+        <Button style={width} variant="contained">Contained</Button>
+
         <p className="content">{details}</p>
+    
       </div>
   );
 }
