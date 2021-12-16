@@ -1,8 +1,6 @@
 import "./App.css";
 import * as React from 'react';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import { margin, padding } from "@mui/system";
+import { useState } from "react";
 export default function App() {
   const details = [
     {
@@ -102,17 +100,35 @@ function Welcome({ name, img, details, rating }) {
 //conditional styling
   const styles = {color: rating > 8 ? "green":"red"}
   const width = {width:"90%" ,margin:"10px"}
+  const [show, setshow] = useState(true);
+  // const displays = {display: show ? "block" : "none"};
     return (
       <div className="main">
         <img className="image" src={img} alt="img" />
         <div className="sub"> 
-        <h1>{name}</h1>
-        <p style={styles}>❤️{rating}</p>
+          <h1>{name}</h1>
+          <p style={styles}>⭐{rating}</p>
         </div>
-        <Button style={width} variant="contained">Contained</Button>
+        <div className="buttons"> 
+        <button  className="btn" onClick={()=>setshow(!show)}><span>⏬</span>Show Details</button>
+          <Counter/>
+        </div>
+          {/* conditional styling */}
+          {/* <p style={displays} className="content">{details}</p> */}
+          {/* Conditional rendering */}
+          {show ? <p className="content">{details}</p> : ""}
 
-        <p className="content">{details}</p>
     
       </div>
   );
+}
+function Counter(){
+  const[like,setlike] = useState(0);
+  const[dislike,setdislike] = useState(0);
+  return(
+    <div>
+    <button className="btn" onClick={()=>setlike(like+1)}><span>👍</span>{like}</button>
+    <button className="btn" onClick={()=>setdislike(dislike+1)}><span>👎</span>{dislike}</button>
+    </div>
+    )
 }
