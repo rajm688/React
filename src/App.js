@@ -1,7 +1,13 @@
+import * as React from 'react';
 import "./App.css";
 import { useState } from "react";
 import { Counter } from "./Counter";
 import { Movielist } from "./Movielist";
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import StarIcon from '@mui/icons-material/Star';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 export default function App() {
   const intmovies = [
     {
@@ -98,24 +104,19 @@ export default function App() {
   return (
     <div className="App">
         <div className="form"> 
-        <input
-          onChange={(event) => setname(event.target.value)}
-          placeHolder="Enter the Movie name"
-        />
-        <input
-          onChange={(event) => setposter(event.target.value)}
-          placeHolder="Enter the Movie Poster"
-        />
-        <input
-          onChange={(event) => setrating(event.target.value)}
-          placeHolder="Enter the Movie Rating"
-        />
-        <input
-          onChange={(event) => setsummary(event.target.value)}
-          placeHolder="Enter the Movie Details"
-        />
-        <button className="submit"
-          onClick={() => {
+       
+        <TextField  onChange={(event) => setname(event.target.value)}
+           id="standard-basic" label="Enter the Movie name" variant="standard" />
+    
+        <TextField onChange={(event) => setposter(event.target.value)}
+           id="standard-basic" label="Enter the Movie Poster" variant="standard" />
+   
+        <TextField  onChange={(event) => setrating(event.target.value)}
+           id="standard-basic" label="Enter the Movie Rating" variant="standard" />
+  
+        <TextField  onChange={(event) => setsummary(event.target.value)}
+           id="standard-basic" label="Enter the Movie Details" variant="standard" />
+        <Button className="submit" onClick={() => {
             const newmovie = {
               name: name,
               poster: poster,
@@ -124,10 +125,7 @@ export default function App() {
             };
             console.log(newmovie)
             setmovielist([...movielist, newmovie]);
-          }}
-        >
-          Add Movie
-        </button>
+          }} variant="contained">Add movie</Button>
       </div>
       <div className="hello">
       <Movielist movies={movielist} setmovielist={setmovielist} />
@@ -145,14 +143,14 @@ export function Movie({ deletebutton,name, poster, rating, summary }) {
       <img className="image" src={poster} alt="img" />
       <div className="sub">
         <h2>{name}</h2>
-        <p style={styles}>⭐{rating}</p>
+        <p style={styles}><StarIcon/>{rating}</p>
       </div>
       <div className="buttons">
         <button className="btn" onClick={() => setshow(!show)}>
-          <span>⏬</span>Show Details
+          {show ?<KeyboardArrowUpIcon/>:<KeyboardArrowDownIcon/>}
         </button>
         <Counter />
-        {deletebutton}
+      {deletebutton}
       </div>
 
       {/* conditional styling */}
