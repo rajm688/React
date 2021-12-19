@@ -1,8 +1,9 @@
 import "./App.css";
-import * as React from 'react';
-import { Welcome } from "./Welcome";
+import { useState } from "react";
+import { Counter } from "./Counter";
+import { Movielist } from "./Movielist";
 export default function App() {
-  const details = [
+  const intmovies = [
     {
       name: "Iron man 2",
       poster:
@@ -89,11 +90,76 @@ export default function App() {
         "Peter Jackson's expansive remake of the 1933 classic follows director Carl Denham (Jack Black) and his crew on a journey from New York City to the ominous Skull Island to film a new movie. Accompanying him are playwright Jack Driscoll (Adrien Brody) and actress Ann Darrow (Naomi Watts), who is whisked away by the monstrous ape, Kong, after they reach the island. The crew encounters dinosaurs and other creatures as they race to rescue Ann, while the actress forms a bond with her simian captor."
     }
   ];
+  const [movielist, setmovielist] = useState(intmovies);
+  const [name, setname] = useState("");
+  const [poster, setposter] = useState("");
+  const [rating, setrating] = useState("");
+  const [summary, setsummary] = useState("");
+  return (
+    <div className="App">
+        <div className="form"> 
+        <input
+          onChange={(event) => setname(event.target.value)}
+          placeHolder="Enter the Movie name"
+        />
+        <input
+          onChange={(event) => setposter(event.target.value)}
+          placeHolder="Enter the Movie Poster"
+        />
+        <input
+          onChange={(event) => setrating(event.target.value)}
+          placeHolder="Enter the Movie Rating"
+        />
+        <input
+          onChange={(event) => setsummary(event.target.value)}
+          placeHolder="Enter the Movie Details"
+        />
+        <button className="submit"
+          onClick={() => {
+            const newmovie = {
+              name: name,
+              poster: poster,
+              rating: rating,
+              summary: summary
+            };
+            console.log(newmovie)
+            setmovielist([...movielist, newmovie]);
+          }}
+        >
+          Add Movie
+        </button>
+      </div>
+      <div className="hello">
+      <Movielist movies={movielist} setmovielist={setmovielist} />
+    </div>
+    </div>
+  );
+}
+export function Movie({ deletebutton,name, poster, rating, summary }) {
+  //conditional styling
+  const styles = { color: rating > 8 ? "green" : "red" };
+  const [show, setshow] = useState(true);
+  // const displays = {display: show ? "block" : "none"};
+  return (
+    <div className="main">
+      <img className="image" src={poster} alt="img" />
+      <div className="sub">
+        <h2>{name}</h2>
+        <p style={styles}>⭐{rating}</p>
+      </div>
+      <div className="buttons">
+        <button className="btn" onClick={() => setshow(!show)}>
+          <span>⏬</span>Show Details
+        </button>
+        <Counter />
+        {deletebutton}
+      </div>
 
-  return details.map(({ name, poster, summary, rating }) => (
-    <Welcome name={name} img={poster} details={summary} rating={rating} />
-  ));
-
-  // <Welcome name={name} img={poster}/>
+      {/* conditional styling */}
+      {/* <p style={displays} className="content">{details}</p> */}
+      {/* Conditional rendering */}
+      {show ? <p className="content">{summary}</p> : ""}
+    </div>
+  );
 }
 

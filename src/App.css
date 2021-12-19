@@ -15,11 +15,11 @@ img{
 .content{
   color: rgb(52, 52, 56);
   overflow: auto;
-  height: 9.5rem;
+  height: 9 rem;
   padding: 10px;
   text-align: justify;
 }
-#root{
+.hello > div{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   justify-content: space-evenly;
@@ -40,11 +40,18 @@ h1{
   background-color:rgb(216, 216, 216); 
   font-size: 1rem;
 }
-span{
-  font-size: 1rem;
+.form{
+  display:flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin: 10px;
+  padding: 10px;
+}
+input, .submit{
+  margin: 10px;
 }
 .buttons{
-  display: flex;
+  display:flex;
   justify-content: space-between;
   align-items: baseline;
 }
