@@ -15,8 +15,8 @@ img{
 .content{
   color: rgb(52, 52, 56);
   overflow: auto;
-  height: 9 rem;
-  padding: 10px;
+  height: 8 rem;
+  padding: 5px;
   text-align: justify;
 }
 .hello > div{
@@ -41,12 +41,12 @@ h1{
   font-size: 1rem;
 }
 .form{
-  display:flex;
+  display: flex;
   gap: 10px;
-  flex-direction: column;
-  align-items: stretch;
-  margin: 10px;
+  width: 100%;
+  justify-content: space-evenly;
   padding: 10px;
+  margin: 10px;
 }
 input, .submit{
   margin: 10px;
@@ -58,4 +58,19 @@ input, .submit{
 }
 .counter{
   display:flex;
+  gap: 20px;
+}
+body{
+  background-image: url("https://thumbs.dreamstime.com/b/abstract-background-white-film-strip-frame-clapper-board-isolated-white-background-design-template-cinema-space-139079299.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 800;
+  line-height: 20px;
+}
+nav{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

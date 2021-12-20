@@ -3,11 +3,13 @@ import "./App.css";
 import { useState } from "react";
 import { Counter } from "./Counter";
 import { Movielist } from "./Movielist";
+import { Switch, Route, Link } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import StarIcon from '@mui/icons-material/Star';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { Color } from './Color';
 export default function App() {
   const intmovies = [
     {
@@ -16,7 +18,7 @@ export default function App() {
         "https://m.media-amazon.com/images/M/MV5BMTM0MDgwNjMyMl5BMl5BanBnXkFtZTcwNTg3NzAzMw@@._V1_FMjpg_UX1000_.jpg",
       rating: 7,
       summary:
-        "With the world now aware that he is Iron Man, billionaire inventor Tony Stark (Robert Downey Jr.) faces pressure from all sides to share his technology with the military. He is reluctant to divulge the secrets of his armored suit, fearing the information will fall into the wrong hands. With Pepper Potts (Gwyneth Paltrow) and Rhodes (Don Cheadle) by his side, Tony must forge new alliances and confront a powerful new enemy."
+        "With the world now aware that he is Iron Man, billionaire inventor Tony Stark (Robert Downey Jr.) faces pressure from all sides to share his technology with the military. "
     },
     {
       name: "No Country for Old Men",
@@ -93,7 +95,7 @@ export default function App() {
       poster: "https://m.media-amazon.com/images/I/817FBcXLN2L._SL1500_.jpg",
       rating: 9,
       summary:
-        "Peter Jackson's expansive remake of the 1933 classic follows director Carl Denham (Jack Black) and his crew on a journey from New York City to the ominous Skull Island to film a new movie. Accompanying him are playwright Jack Driscoll (Adrien Brody) and actress Ann Darrow (Naomi Watts), who is whisked away by the monstrous ape, Kong, after they reach the island. The crew encounters dinosaurs and other creatures as they race to rescue Ann, while the actress forms a bond with her simian captor."
+        "Peter Jackson's expansive remake of the 1933 classic follows director Carl Denham (Jack Black) and his crew on a journey from New York City to the ominous Skull Island to film a new movie. "
     }
   ];
   const [movielist, setmovielist] = useState(intmovies);
@@ -103,8 +105,18 @@ export default function App() {
   const [summary, setsummary] = useState("");
   return (
     <div className="App">
-        <div className="form"> 
-       
+      <nav>
+      <Link to="/home">Home</Link>
+      <Link to="/movies">Movies</Link>
+      <Link to="/Add-Movie"> Add movie</Link>
+      <Link to="/color-game">color Game</Link>
+      </nav>
+      <Switch>
+      <Route path="/home">
+      <Home/>
+      </Route>
+      <Route path="/Add-Movie">
+      <div className="form"> 
         <TextField  onChange={(event) => setname(event.target.value)}
            id="standard-basic" label="Enter the Movie name" variant="standard" />
     
@@ -116,6 +128,7 @@ export default function App() {
   
         <TextField  onChange={(event) => setsummary(event.target.value)}
            id="standard-basic" label="Enter the Movie Details" variant="standard" />
+        
         <Button className="submit" onClick={() => {
             const newmovie = {
               name: name,
@@ -123,13 +136,20 @@ export default function App() {
               rating: rating,
               summary: summary
             };
-            console.log(newmovie)
+            // console.log(newmovie)
             setmovielist([...movielist, newmovie]);
           }} variant="contained">Add movie</Button>
       </div>
+      </Route>
+      <Route path="/movies">
       <div className="hello">
       <Movielist movies={movielist} setmovielist={setmovielist} />
     </div>
+    </Route>
+    <Route path="/color-game">
+      <Color/>
+    </Route>
+    </Switch>
     </div>
   );
 }
@@ -142,7 +162,7 @@ export function Movie({ deletebutton,name, poster, rating, summary }) {
     <div className="main">
       <img className="image" src={poster} alt="img" />
       <div className="sub">
-        <h2>{name}</h2>
+        <h3>{name}</h3>
         <p style={styles}><StarIcon/>{rating}</p>
       </div>
       <div className="buttons">
@@ -161,3 +181,8 @@ export function Movie({ deletebutton,name, poster, rating, summary }) {
   );
 }
 
+function Home(){
+  return(
+    <h1>🎉Welocme to my react Page🎉</h1>
+  )
+}

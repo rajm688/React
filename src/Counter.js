@@ -4,7 +4,6 @@ import { useState } from "react";
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import Badge from '@mui/material/Badge';
-import MailIcon from '@mui/icons-material/Mail';
 export function Counter() {
   const [like, setlike] = useState(0);
   const [dislike, setdislike] = useState(0);
@@ -12,13 +11,13 @@ export function Counter() {
     <div className='counter'>
          <IconButton  onClick={() => {
         setlike(like + 1)}} aria-label="delete">
-        <Badge badgeContent={like} color="primary"> <ThumbUpIcon /></Badge>
+        <Badge badgeContent={like} color="success"> <ThumbUpIcon /></Badge>
 </IconButton>
 
 <IconButton  onClick={() => {
         setdislike(dislike + 1);
       }} aria-label="delete">
-        <Badge badgeContent={dislike} color="primary"> <ThumbDownIcon /></Badge>
+        <Badge badgeContent={dislike} color="warning"> <ThumbDownIcon /></Badge>
 </IconButton>
   </div>
   );
