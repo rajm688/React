@@ -10,6 +10,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import StarIcon from '@mui/icons-material/Star';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Color } from './Color';
+import { Home } from './Home';
 export default function App() {
   const intmovies = [
     {
@@ -107,8 +108,8 @@ export default function App() {
     <div className="App">
       <nav>
       <Link to="/home">Home</Link>
-      <Link to="/movies">Movies</Link>
       <Link to="/Add-Movie"> Add movie</Link>
+      <Link to="/movies">Movies</Link>
       <Link to="/color-game">color Game</Link>
       </nav>
       <Switch>
@@ -181,8 +182,3 @@ export function Movie({ deletebutton,name, poster, rating, summary }) {
   );
 }
 
-function Home(){
-  return(
-    <h1>🎉Welocme to my react Page🎉</h1>
-  )
-}
