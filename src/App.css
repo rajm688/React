@@ -71,10 +71,30 @@ body{
 }
 nav{
   display: flex;
-  flex-direction: column;
   gap: 10px;
+  background-color: rgb(148, 148, 148);
+  padding: 20px;
+;
 }
 .home{
-  margin: 30px;
+  margin: 100px;
+  text-align: center;
+}
+#link{
+  text-decoration: none;
+  color: aliceblue;
+  padding: 10px;
+}
+.notfound{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+.notf{
   padding: 100px;
+}
+#not{
+  text-align: center;
+  padding: 10px;
 }

@@ -3,7 +3,7 @@ import "./App.css";
 import { useState } from "react";
 import { Counter } from "./Counter";
 import { Movielist } from "./Movielist";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link, Redirect,useHistory,useParams } from "react-router-dom";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
@@ -11,6 +11,9 @@ import StarIcon from '@mui/icons-material/Star';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { Color } from './Color';
 import { Home } from './Home';
+import { Notfound } from './Notfound';
+import InfoIcon from '@mui/icons-material/Info';
+import { IconButton } from '@mui/material';
 export default function App() {
   const intmovies = [
     {
@@ -104,17 +107,22 @@ export default function App() {
   const [poster, setposter] = useState("");
   const [rating, setrating] = useState("");
   const [summary, setsummary] = useState("");
+  const history = useHistory();  
   return (
     <div className="App">
       <nav>
-      <Link to="/home">Home</Link>
-      <Link to="/Add-Movie"> Add movie</Link>
-      <Link to="/movies">Movies</Link>
-      <Link to="/color-game">color Game</Link>
+      <Link  id='link' to="/">Home</Link>  {/* will be matched by substring and order matters */}
+      <Link id='link' to="/Add-Movie"> Add movie</Link>
+      <Link id='link' to="/flims">Movies</Link>
+      <Link id='link' to="/color-game">color Game</Link>
       </nav>
       <Switch>
-      <Route path="/home">
+        {/* exact will solve the issue in matching with substring */}
+      <Route exact path="/"> 
       <Home/>
+      </Route>
+      <Route path="/movies/:id">
+        <MovieDetails/>
       </Route>
       <Route path="/Add-Movie">
       <div className="form"> 
@@ -139,8 +147,13 @@ export default function App() {
             };
             // console.log(newmovie)
             setmovielist([...movielist, newmovie]);
+      history.push("/movies")
           }} variant="contained">Add movie</Button>
       </div>
+      </Route>
+      <Route path="/flims">
+      {/* redirect is used to change the file path from flims to movie */}
+        <Redirect to="/movies"/> 
       </Route>
       <Route path="/movies">
       <div className="hello">
@@ -150,14 +163,18 @@ export default function App() {
     <Route path="/color-game">
       <Color/>
     </Route>
+    <Route path="**">
+      <Notfound/>
+    </Route>
     </Switch>
     </div>
   );
 }
-export function Movie({ deletebutton,name, poster, rating, summary }) {
+export function Movie({ deletebutton,name, poster, rating, summary,id }) {
   //conditional styling
   const styles = { color: rating > 8 ? "green" : "red" };
   const [show, setshow] = useState(true);
+  const history = useHistory();
   // const displays = {display: show ? "block" : "none"};
   return (
     <div className="main">
@@ -170,6 +187,7 @@ export function Movie({ deletebutton,name, poster, rating, summary }) {
         <button className="btn" onClick={() => setshow(!show)}>
           {show ?<KeyboardArrowUpIcon/>:<KeyboardArrowDownIcon/>}
         </button>
+        <IconButton color="info" onClick={()=>history.push(`/movies/${id}`)}><InfoIcon/></IconButton>
         <Counter />
       {deletebutton}
       </div>
@@ -182,3 +200,11 @@ export function Movie({ deletebutton,name, poster, rating, summary }) {
   );
 }
 
+function MovieDetails(){
+  const{id} = useParams();
+  return (
+    <div>
+      <h1>Movies Selected :{id} </h1>
+    </div>
+  )
+}
