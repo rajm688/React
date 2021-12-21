@@ -98,3 +98,32 @@ nav{
   text-align: center;
   padding: 10px;
 }
+.iframe{
+  width: 500px;
+  height: 60%;
+  height:max-content;
+  margin: 10px  
+}
+.navi {
+  display: grid;
+  gap:10px
+}
+.gameBox{
+  width: 8rem;
+  height: 8rem;
+  border: solid black;
+  font-size: 7rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
+}
+.gameboard{
+  display: grid;
+grid-template-columns: repeat(3,1fr);
+width: min-content;
+margin: 20px;
+}
+.gameBox:hover{
+  background-color: rgba(0, 0, 0, 0.205);
+}
