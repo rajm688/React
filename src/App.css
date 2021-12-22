@@ -114,12 +114,13 @@ nav{
   border: solid black;
   font-size: 7rem;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
   cursor: pointer;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.281);
 }
 .gameboard{
   display: grid;
+
 grid-template-columns: repeat(3,1fr);
 width: min-content;
 margin: 20px;

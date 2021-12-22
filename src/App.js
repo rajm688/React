@@ -242,7 +242,6 @@ function MovieDetails({movies}){
     };
    const winneris = winner(board)
    const { width, height } = useWindowSize()
-   const history = useHistory();
     return(
       <div>
         {winneris ? <Confetti
@@ -253,13 +252,13 @@ function MovieDetails({movies}){
        {board.map((val, index)=><GameBox val = {val} onplayerclick={()=> handleclick(index)} />)}
       </div>
       {winneris ?<h2>the Winnner is {winneris}</h2>:""}
-      {winneris ?<Button style={{width:"20%"}} className='forward' onClick={()=>history.goBack()} variant="outlined"><RefreshIcon/>Restart</Button>:""}
+      {winneris ?<Button style={{width:"20%"}} className='forward' onClick={()=>setboard([null,null,null,null,null,null,null,null,null])} variant="outlined"><RefreshIcon/>Restart</Button>:""}
 
       </div>
     )
   }
   function GameBox({val, onplayerclick}){
-    const styles = {color: val === "X" ? "green":"red"}
+    const styles = {color: val === "X" ? "black":"red"}
     return(
       <div onClick={()=>onplayerclick()} style={styles} className='gameBox'>{val}</div>
     )
