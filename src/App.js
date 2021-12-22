@@ -20,6 +20,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import useWindowSize from 'react-use/lib/useWindowSize'
 import Confetti from 'react-confetti'
+import RefreshIcon from '@mui/icons-material/Refresh';
 export default function App() {
   const intmovies = [
     {
@@ -241,6 +242,7 @@ function MovieDetails({movies}){
     };
    const winneris = winner(board)
    const { width, height } = useWindowSize()
+   const history = useHistory();
     return(
       <div>
         {winneris ? <Confetti
@@ -251,6 +253,8 @@ function MovieDetails({movies}){
        {board.map((val, index)=><GameBox val = {val} onplayerclick={()=> handleclick(index)} />)}
       </div>
       {winneris ?<h2>the Winnner is {winneris}</h2>:""}
+      {winneris ?<Button style={{width:"20%"}} className='forward' onClick={()=>history.goBack()} variant="outlined"><RefreshIcon/>Restart</Button>:""}
+
       </div>
     )
   }
