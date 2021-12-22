@@ -253,7 +253,8 @@ function MovieDetails({movies}){
        {board.map((val, index)=><GameBox val = {val} onplayerclick={()=> handleclick(index)} />)}
       </div>
       {winneris ?<h2>the Winnner is {winneris}</h2>:""}
-      {winneris ?<Button style={{width:"20%"}} className='forward' onClick={()=>history.push("/Tictaktoe")} variant="outlined"><RefreshIcon/>Restart</Button>:""}
+            {winneris ?<Button style={{width:"20%"}} className='forward' onClick={()=>setboard([null,null,null,null,null,null,null,null,null])} variant="outlined"><RefreshIcon/>Restart</Button>:""}
+
 
       </div>
     )
