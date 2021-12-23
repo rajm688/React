@@ -1,15 +1,9 @@
 img{
-  width: 100%;
-  height: 50%;
-  border-radius: 10px 10px 0 0;
+  width: 80%;
+  height: 400px;
   object-fit: cover;
 }
 .main{
-  background-color: rgb(216, 216, 216);
-  box-shadow: 5px 5px 10px rgb(241, 241, 241);
-  width: 18rem;
-  height: 40rem;
-  border-radius: 10px;
   margin: 10px;
 }
 .content{
@@ -61,10 +55,10 @@ input, .submit{
   gap: 20px;
 }
 body{
-  background-image: url("https://thumbs.dreamstime.com/b/abstract-background-white-film-strip-frame-clapper-board-isolated-white-background-design-template-cinema-space-139079299.jpg");
+  /* background-image: url("https://thumbs.dreamstime.com/b/abstract-background-white-film-strip-frame-clapper-board-isolated-white-background-design-template-cinema-space-139079299.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: cover;
+  background-size: cover; */
   font-family: 'Josefin Sans', sans-serif;
   font-weight: 800;
   line-height: 20px;
@@ -117,14 +111,31 @@ nav{
   cursor: pointer;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.281);
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
 .gameboard{
   display: grid;
-
 grid-template-columns: repeat(3,1fr);
+grid-template-rows: auto;
 width: min-content;
 margin: 20px;
 }
 .gameBox:hover{
   background-color: rgba(0, 0, 0, 0.205);
+}
+.outercontainer{
+  /* height: 44rem; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+    justify-content: center;
+}
+body{
+  height: 47rem;
+}
+.css-1o6kmfp-MuiTypography-root{
+  overflow: auto;
+  height: 150px;
 }

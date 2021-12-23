@@ -21,9 +21,17 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import useWindowSize from 'react-use/lib/useWindowSize'
 import Confetti from 'react-confetti'
 import RefreshIcon from '@mui/icons-material/Refresh';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Paper from '@mui/material/Paper'
 export default function App() {
   const intmovies = [
     {
+      id:100,
       name: "RRR",
       poster:
         "https://englishtribuneimages.blob.core.windows.net/gallary-content/2021/6/Desk/2021_6$largeimg_977224513.JPG",
@@ -33,6 +41,7 @@ export default function App() {
       trailer: "https://www.youtube.com/embed/f_vbAtFSEc0"
     },
     {
+      id:102,
       name: "Iron man 2",
       poster:
         "https://m.media-amazon.com/images/M/MV5BMTM0MDgwNjMyMl5BMl5BanBnXkFtZTcwNTg3NzAzMw@@._V1_FMjpg_UX1000_.jpg",
@@ -42,6 +51,7 @@ export default function App() {
       trailer: "https://www.youtube.com/embed/wKtcmiifycU"
     },
     {
+      id:103,
       name: "No Country for Old Men",
       poster:
         "https://upload.wikimedia.org/wikipedia/en/8/8b/No_Country_for_Old_Men_poster.jpg",
@@ -51,6 +61,7 @@ export default function App() {
       trailer: "https://www.youtube.com/embed/38A__WT3-o0"
     },
     {
+      id:104,
       name: "Jai Bhim",
       poster:
         "https://m.media-amazon.com/images/M/MV5BY2Y5ZWMwZDgtZDQxYy00Mjk0LThhY2YtMmU1MTRmMjVhMjRiXkEyXkFqcGdeQXVyMTI1NDEyNTM5._V1_FMjpg_UX1000_.jpg",
@@ -60,6 +71,7 @@ export default function App() {
       trailer: "https://www.youtube.com/embed/nnXpbTFrqXA"
     },
     {
+      id:105,
       name: "The Avengers",
       rating: 8,
       summary:
@@ -69,6 +81,7 @@ export default function App() {
       trailer: "https://www.youtube.com/embed/eOrNdBpGMv8"
     },
     {
+      id:106,
       name: "Interstellar",
       poster: "https://m.media-amazon.com/images/I/A1JVqNMI7UL._SL1500_.jpg",
       rating: 8.6,
@@ -77,6 +90,7 @@ export default function App() {
       trailer: "https://www.youtube.com/embed/zSWdZVtXT7E"
     },
     {
+      id:107,
       name: "Baahubali",
       poster: "https://flxt.tmsimg.com/assets/p11546593_p_v10_af.jpg",
       rating: 8,
@@ -84,7 +98,7 @@ export default function App() {
         "In the kingdom of Mahishmati, Shivudu falls in love with a young warrior woman. While trying to woo her, he learns about the conflict-ridden past of his family and his true legacy.",
       trailer: "https://www.youtube.com/embed/sOEg_YZQsTI"
     },
-    {
+    {id:108,
       name: "Ratatouille",
       poster:
         "https://resizing.flixster.com/gL_JpWcD7sNHNYSwI1ff069Yyug=/ems.ZW1zLXByZC1hc3NldHMvbW92aWVzLzc4ZmJhZjZiLTEzNWMtNDIwOC1hYzU1LTgwZjE3ZjQzNTdiNy5qcGc=",
@@ -99,8 +113,14 @@ export default function App() {
   const [poster, setposter] = useState("");
   const [rating, setrating] = useState("");
   const [summary, setsummary] = useState("");
-  const history = useHistory();  
+  const history = useHistory();
+  const theme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });  
   return (
+    <ThemeProvider theme={theme}>
     <div className="App">
       <AppBar position="static">
         <Toolbar>
@@ -170,8 +190,10 @@ export default function App() {
       <Notfound/>
     </Route>
     </Switch>
+    
+    
     </div>
-  );
+    </ThemeProvider>);
 }
 export function Movie({ deletebutton,name, poster, rating, summary,id }) {
   //conditional styling
@@ -180,25 +202,37 @@ export function Movie({ deletebutton,name, poster, rating, summary,id }) {
   const history = useHistory();
   // const displays = {display: show ? "block" : "none"};
   return (
-    <div className="main">
-      <img className="image" src={poster} alt="img" />
-      <div className="sub">
-        <h3>{name}</h3>
+    <div className='main'>
+    <Card sx={{ maxWidth: 345 }}>
+    <CardActionArea>
+    <CardMedia
+          component="img"
+          height="140"
+          image={poster}
+          alt="green iguana"
+        />
+         <CardContent>
+           <div className='sub'>
+          <Typography gutterBottom variant="h5" component="div">
+          {name}
+          </Typography>
         <p style={styles}><StarIcon/>{rating}</p>
-      </div>
-      <div className="buttons">
+          </div>
+          <div className="buttons">
         <button className="btn" onClick={() => setshow(!show)}>
-          {show ?<KeyboardArrowUpIcon/>:<KeyboardArrowDownIcon/>}
+        {show ? <KeyboardArrowUpIcon/>:<KeyboardArrowDownIcon/>}
         </button>
         <IconButton color="info" onClick={()=>history.push(`/movies/${id}`)}><InfoIcon/></IconButton>
         <Counter />
       {deletebutton}
       </div>
-
-      {/* conditional styling */}
-      {/* <p style={displays} className="content">{details}</p> */}
-      {/* Conditional rendering */}
-      {show ? <p className="content">{summary}</p> : ""}
+          {show ?  <Typography variant="body2" color="text.secondary">
+          {summary}
+          </Typography>: ""}
+        </CardContent>
+      </CardActionArea>
+    </Card>
+    <Paper elevation={3} />
     </div>
   );
 }
@@ -243,7 +277,7 @@ function MovieDetails({movies}){
    const winneris = winner(board)
    const { width, height } = useWindowSize()
     return(
-      <div>
+      <div className='outercontainer'>
         {winneris ? <Confetti
       width={width}
       height={height}
@@ -251,15 +285,12 @@ function MovieDetails({movies}){
       <div className='gameboard'>
        {board.map((val, index)=><GameBox val = {val} onplayerclick={()=> handleclick(index)} />)}
       </div>
-      {winneris ?<h2>the Winnner is {winneris}</h2>:""}
-<<<<<<< HEAD
-      {winneris ?<Button style={{width:"20%"}} className='forward' onClick={()=>setboard([null,null,null,null,null,null,null,null,null])} variant="outlined"><RefreshIcon/>Restart</Button>:""}
-=======
-            {winneris ?<Button style={{width:"20%"}} className='forward' onClick={()=>setboard([null,null,null,null,null,null,null,null,null])} variant="outlined"><RefreshIcon/>Restart</Button>:""}
-
->>>>>>> 6872107244fa06b5dd6239b1971bf456d3192c90
-
+      <div>
+       {winneris ?<h2>the Winnner is {winneris}</h2>:""}
+       {winneris ?<Button style={{width:"100%"}} className='forward' onClick={()=>setboard([null,null,null,null,null,null,null,null,null])} variant="outlined"><RefreshIcon/>Restart</Button>:""}
+       </div>
       </div>
+     
     )
   }
   function GameBox({val, onplayerclick}){
