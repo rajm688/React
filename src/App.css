@@ -1,40 +1,40 @@
-img{
+img {
   width: 80%;
   height: 400px;
   object-fit: cover;
 }
-.main{
+.main {
   margin: 10px;
 }
-.content{
+.content {
   color: rgb(52, 52, 56);
   overflow: auto;
   height: 8 rem;
   padding: 5px;
   text-align: justify;
 }
-.hello > div{
+.hello > div {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   justify-content: space-evenly;
 }
-.sub{
+.sub {
   display: flex;
   justify-content: space-between;
   padding: 10px;
   justify-content: space-between;
-    align-items: center;
+  align-items: center;
 }
-h1{
+h1 {
   color: rgb(52, 52, 56);
   margin: 0.5px;
 }
-.btn{
+.btn {
   border: 0;
-  background-color:rgb(216, 216, 216); 
+  background-color: rgb(216, 216, 216);
   font-size: 1rem;
 }
-.form{
+.form {
   display: flex;
   gap: 10px;
   width: 100%;
@@ -42,67 +42,68 @@ h1{
   padding: 10px;
   margin: 10px;
 }
-input, .submit{
+input,
+.submit {
   margin: 10px;
 }
-.buttons{
+.buttons {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.counter{
-  display:flex;
+.counter {
+  display: flex;
   gap: 20px;
 }
-body{
+body {
   /* background-image: url("https://thumbs.dreamstime.com/b/abstract-background-white-film-strip-frame-clapper-board-isolated-white-background-design-template-cinema-space-139079299.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover; */
-  font-family: 'Josefin Sans', sans-serif;
+  margin: 0;
+  font-family: "Josefin Sans", sans-serif;
   font-weight: 800;
   line-height: 20px;
 }
-nav{
+nav {
   display: flex;
   gap: 10px;
   background-color: rgb(148, 148, 148);
   padding: 20px;
-;
 }
-.home{
+.home {
   margin: 100px;
   text-align: center;
 }
-#link{
+#link {
   text-decoration: none;
   color: aliceblue;
   padding: 10px;
 }
-.notfound{
+.notfound {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
 }
-.notf{
+.notf {
   padding: 100px;
 }
-#not{
+#not {
   text-align: center;
   padding: 10px;
 }
-.iframe{
+.iframe {
   width: 500px;
   height: 60%;
-  height:max-content;
-  margin: 10px  
+  height: max-content;
+  margin: 10px;
 }
 .navi {
   display: grid;
-  gap:10px
+  gap: 10px;
 }
-.gameBox{
+.gameBox {
   width: 8rem;
   height: 8rem;
   border: solid black;
@@ -115,27 +116,27 @@ nav{
   justify-content: center;
   align-items: center;
 }
-.gameboard{
+.gameboard {
   display: grid;
-grid-template-columns: repeat(3,1fr);
-grid-template-rows: auto;
-width: min-content;
-margin: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  width: min-content;
+  margin: 20px;
 }
-.gameBox:hover{
+.gameBox:hover {
   background-color: rgba(0, 0, 0, 0.205);
 }
-.outercontainer{
+.outercontainer {
   /* height: 44rem; */
   display: flex;
   flex-direction: column;
   align-items: center;
-    justify-content: center;
+  justify-content: center;
 }
-body{
+body {
   height: 47rem;
 }
-.css-1o6kmfp-MuiTypography-root{
+.css-1o6kmfp-MuiTypography-root {
   overflow: auto;
   height: 150px;
 }

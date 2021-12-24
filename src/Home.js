@@ -1,7 +1,9 @@
-import * as React from 'react';
-
+import * as React from "react";
+import Typography from "@mui/material/Typography";
 export function Home() {
   return (
-    <h1 className='home'>🎉Welocme to my react Page🎉</h1>
+    <Typography className="home" gutterBottom variant="h5" component="div">
+      🎉Welocme to my react Page🎉
+    </Typography>
   );
 }
