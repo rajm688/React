@@ -11,7 +11,6 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
 import Paper from "@mui/material/Paper";
 
 export function Movie({ deletebutton, name, poster, rating, summary, id }) {
@@ -23,7 +22,6 @@ export function Movie({ deletebutton, name, poster, rating, summary, id }) {
   return (
     <div className="main">
       <Card sx={{ maxWidth: 345 }}>
-        <CardActionArea>
           <CardMedia
             component="img"
             height="140"
@@ -41,9 +39,9 @@ export function Movie({ deletebutton, name, poster, rating, summary, id }) {
               </p>
             </div>
             <div className="buttons">
-              <button className="btn" onClick={() => setshow(!show)}>
-                {show ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-              </button>
+              <IconButton onClick={() => setshow(!show)}>
+              {show ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+              </IconButton>
               <IconButton
                 color="info"
                 onClick={() => history.push(`/movies/${id}`)}
@@ -61,7 +59,6 @@ export function Movie({ deletebutton, name, poster, rating, summary, id }) {
               ""
             )}
           </CardContent>
-        </CardActionArea>
       </Card>
       <Paper elevation={3} />
     </div>

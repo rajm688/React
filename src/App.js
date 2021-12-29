@@ -3,7 +3,6 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { Movielist } from "./Movielist";
 import { Switch, Route, Redirect, useHistory } from "react-router-dom";
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { Color } from "./Color";
 import { Home } from "./Home";
@@ -17,6 +16,8 @@ import NightsStayIcon from "@mui/icons-material/NightsStay";
 import LightModeIcon from "@mui/icons-material/LightMode";
 
 import Paper from "@mui/material/Paper";
+import { Form } from "./Form";
+import { Addmovie } from "./Addmovie";
 export default function App() {
   // const intmovies = [
   //   {
@@ -98,10 +99,8 @@ export default function App() {
   //   }
   // ];
   const [movielist, setmovielist] = useState([]);
-  const [name, setname] = useState("");
-  const [poster, setposter] = useState("");
-  const [rating, setrating] = useState("");
-  const [summary, setsummary] = useState("");
+  const history = useHistory();
+  
   const [currenttheme, settheme] = useState("light");
   useEffect(
     () =>
@@ -111,7 +110,6 @@ export default function App() {
     []
   );
 
-  const history = useHistory();
   const theme = createTheme({
     palette: {
       mode: currenttheme,
@@ -147,6 +145,9 @@ export default function App() {
               >
                 Tic Tac Toe
               </Button>
+              <Button color="inherit" onClick={() => history.push("/Form")}>
+                Form
+              </Button>
               <Button
                 style={{ marginLeft: "auto" }}
                 color="inherit"
@@ -178,53 +179,7 @@ export default function App() {
               <MovieDetails movies={movielist} />
             </Route>
             <Route path="/Add-Movie">
-              <div className="form">
-                <TextField
-                  onChange={(event) => setname(event.target.value)}
-                  id="standard-basic"
-                  label="Enter the Movie name"
-                  variant="standard"
-                />
-
-                <TextField
-                  onChange={(event) => setposter(event.target.value)}
-                  id="standard-basic"
-                  label="Enter the Movie Poster"
-                  variant="standard"
-                />
-
-                <TextField
-                  onChange={(event) => setrating(event.target.value)}
-                  id="standard-basic"
-                  label="Enter the Movie Rating"
-                  variant="standard"
-                />
-
-                <TextField
-                  onChange={(event) => setsummary(event.target.value)}
-                  id="standard-basic"
-                  label="Enter the Movie Details"
-                  variant="standard"
-                />
-
-                <Button
-                  className="submit"
-                  onClick={() => {
-                    const newmovie = {
-                      name: name,
-                      poster: poster,
-                      rating: rating,
-                      summary: summary,
-                    };
-                    // console.log(newmovie)
-                    setmovielist([...movielist, newmovie]);
-                    history.push("/movies");
-                  }}
-                  variant="contained"
-                >
-                  Add movie
-                </Button>
-              </div>
+              <Addmovie setmovielist={setmovielist} />
             </Route>
             <Route path="/flims">
               {/* redirect is used to change the file path from flims to movie */}
@@ -232,7 +187,7 @@ export default function App() {
             </Route>
             <Route path="/movies">
               <div className="hello">
-                <Movielist movies={movielist} setmovielist={setmovielist} />
+                <Movielist movies={movielist} movielist={movielist} />
               </div>
             </Route>
             <Route path="/color-game">
@@ -240,6 +195,9 @@ export default function App() {
             </Route>
             <Route path="/Tictaktoe">
               <TicTakToe />
+            </Route>
+            <Route path="/Form">
+              <Form />
             </Route>
             <Route path="**">
               <Notfound />
@@ -258,3 +216,5 @@ export function GameBox({ val, onplayerclick }) {
     </div>
   );
 }
+
+
