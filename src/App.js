@@ -18,6 +18,7 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import Paper from "@mui/material/Paper";
 import { Form } from "./Form";
 import { Addmovie } from "./Addmovie";
+import { Forms } from "./Forms";
 export default function App() {
   // const intmovies = [
   //   {
@@ -100,7 +101,7 @@ export default function App() {
   // ];
   const [movielist, setmovielist] = useState([]);
   const history = useHistory();
-  
+
   const [currenttheme, settheme] = useState("light");
   useEffect(
     () =>
@@ -193,6 +194,9 @@ export default function App() {
             <Route path="/color-game">
               <Color />
             </Route>
+            <Route path="/forms">
+              <Forms />
+            </Route>
             <Route path="/Tictaktoe">
               <TicTakToe />
             </Route>
@@ -216,5 +220,3 @@ export function GameBox({ val, onplayerclick }) {
     </div>
   );
 }
-
-
